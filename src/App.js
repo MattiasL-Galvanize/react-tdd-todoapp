@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TodoList from './TodoList'
+import AddTodo from './AddTodo'
 
 class App extends Component {
+  state = {
+    todos: [{"assignee": "Daniel", "name": "Take out trash"}]
+  }
+
+  addTodo = (todo) => {
+    let todos = [...this.state.todos, todo]
+    this.setState({todos})
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div id="main">
+        <TodoList todos={this.state.todos}/>
+        <AddTodo addTodo={this.addTodo}/>
       </div>
     );
   }
